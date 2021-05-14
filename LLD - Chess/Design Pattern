@@ -1,0 +1,17 @@
+Builder Pattern.
+It helps to create new and complex objects in a step wise manner. Produces diff types
+and repr of objects using same construction code.
+eg: to create a house with garden, house with swimming pool, house with garage etc.
+we can create a house object and extend the functionalities and include ours.
+But without subclasses we can also use constructor where we can put all the param,
+that require. this will make look ugly when calling that class.
+
+The builder pattern suggests to extract the object construction code from its own class,
+and make these into a seperate objects called builders.
+The pattern organizes object construction into a set of steps (buildWalls, buildDoor, etc.). 
+To create an object, you execute a series of these steps on a builder object.
+the important part is that you don’t need to call all of the steps.
+you can create several different builder classes that implement the same set of building 
+steps, but in a different manner. Then you can use these builders in the construction 
+process (i.e., an ordered set of calls to the building steps) to produce different kinds 
+of objects.

@@ -1,0 +1,56 @@
+1) gather all requirements.
+2) create use-case diagrams.
+    --> identify actors
+    --> identify use-cases
+    --> adding associations
+    --> identifying inclusive and extension use-cases.
+    --> identify inheritance
+3) create class diagrams.
+    --> figure out all the nouns from requirements and assumptions
+    --> try to apply the different relaions ship rules as 
+        - Association, Generalization, Composition, Aggregation
+4) create skeleton code.
+5) create complete code.
+
+abstract class in italics.
+we will create an abstract class when we dont want to have any object of that class but
+we inherit from it. Like user --> guest or registered user. but we will never user user 
+object.
+
+time.time() -- gives the time -- time.time()-start gives the total time took.
+
+Creating Enum and its uses:
+
+# importing enum for enumerations 
+import enum 
+  
+# creating enumerations using class 
+class Animal(enum.Enum): 
+    dog = 1
+    cat = 2
+    lion = 3
+  
+# printing enum member as string 
+print ("The string representation of enum member is : ",end="") 
+print (Animal.dog) 
+  
+# printing enum member as repr 
+print ("The repr representation of enum member is : ",end="") 
+print (repr(Animal.dog)) 
+  
+# printing the type of enum member using type() 
+print ("The type of enum member is : ",end ="") 
+print (type(Animal.dog)) 
+  
+# printing name of enum member using "name" keyword 
+print ("The name of enum member is : ",end ="") 
+print (Animal.dog.name) 
+
+--> we can iterate through all the neumsin a class.
+
+--> The random() method in random module generates a float number between 0 and 1.
+--> The randint() method generates a integer between a given range of numbers.
+    eg: n = random.randint(0,22)
+--> random.sample(list, n) --> take in a list and return n elements from the list.
+--> Method. choice() method is used to return a random number from given sequence
+    random.choice(list or a tuple)

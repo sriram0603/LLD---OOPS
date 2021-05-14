@@ -1,0 +1,30 @@
+requirements:
+1) Player is gonna put a bet
+2) The dealer is gonna shuffle the deck of cards, and deal two cards to himself and two
+    cards to player.
+3) the players cards will be open and the only one card of dealer is opened
+4) The cards total is calculated and based on it the player will now have a chance 
+    to "Hit" or "stand", when player "Hits" the player's hand value is gonna increase
+    and if it increases 21, he is gonna lose the bet. if it is equal to 21 then the 
+    player's gonna win the bet.
+5) when the player stands, the dealer is gonna reveal his second card and he is gonna
+    draw cards from the deck till his value is greater or equal to 17.
+    same conditions apply for him also.
+6) Then the dealer score is compared with the player score, and the one with higher 
+    score wins.
+7) based on who wins they will pay off the bet.
+8) Player can Join and leave the game at any time.
+
+Assumptions:
+1) Every card has a rank and suit.
+2) Each rank will have Ace,2,3,4,5,6,7,8,9,10,King,Queen,Jack
+3) Each suit will have Hearts, Spade, Club, Diamond.
+4) Only one player.
+5) No special features, Split, Double down, Insurance or Sidebet.
+
+we can add these once the MVP is ready. 
+
+Now Implement:
+1) Split , Double Down, Insurance
+2) Multiple players
+3) Include Show - multiple decks.

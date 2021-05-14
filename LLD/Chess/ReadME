@@ -1,0 +1,46 @@
+Requirements:
+
+Player
+Board
+cell
+Piece
+
+16 pieces Pieces and their moves:
+
+King
+Queen
+Rook
+Bishop
+Knight
+Pawn
+
+Note: can jump over other pieces.
+
+Points to rem:
+1) from enum import Enum
+    class classname(Enum):
+        #decalre our values.
+2) we can use property decorator for getters and setters.
+    This is a getter method:
+    we are able to define the "email" as an method but by adding @property we can access
+    it like a attribute --> obj.email instead of obj.email()
+    this is a settermethod:
+    @fullname.setter
+    def fullname(self,name):
+        first,second = name.split("")
+        self.first = first
+        self.last = last
+
+3) Fragility: tendency to break the code when made a samll change.
+4) Bad Dependencies.
+5) Coupling when a desirable code from another module is added.
+
+problem with the procedure oriented is that the low level modules are effecting the high 
+level modules which is making it hard to reuse the desired code.
+OO:
+1) Encapsulation
+2) Polymorphism
+3) inheritance
+
+for encapsulation: public, private and protected.
+OO weakens the encapsulation.

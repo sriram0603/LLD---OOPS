@@ -1,0 +1,92 @@
+AmazonLP Stories:
+LP Count
+Customer Obsession: 2
+Ownership: 1
+Invent and Simplify: 1
+Are Right, A lot: 2
+Learn and be Curious: 1
+Hire and Develop the Best: 1
+Insist on the Highest Standards: 2
+Think Big: 1
+Bias for Action: 1
+Frugality: 2
+Earn Trust: 1
+Dive Deep: 1
+Have Backbone; Disagree and Commit: 2
+Deliver results: 3
+
+--Computer Fixing--:
+LP Satisfied: Customer Obsession, Are Right A Lot
+S - During my position as a tech assistant in my time at UC Davis, we constantly get 
+Laptops, PCs, Macs in for fixing and maintainance.
+T - There was a customer that came in that wanted to have their laptop backedup. 
+Upon the usual inspection, I noticed that the drive in his laptop was failing.
+A - So, I put in a recquisition for a new drive, knowing that he'll want to switch to 
+the new drive after the backup was complete. I cloned the content of the old drive into 
+the new drive as well as making the backup to the external drive that he requested. 
+R - Upon returning the laptop, I told the customer that his drive was failing and that 
+I upgraded it into a new drive, and all his files are where he left it. Few days go by 
+I got an email from him thanking me because the new drive made his computer run faster 
+as the failing drive was causing massive slow downs. Now, he could actually  get his 
+work done.
+
+--Google Sheets vs Database--:
+LP Satisfied: Frugality, Invent and Simplify, Deliver Results
+S - 
+T - 
+A - 
+R - 
+--Django vs Flask--:
+LP Satisfied: Think Big, Have Backbone; Disagree and Commit, Insist on the Highest Standard
+S - There was a project we were working on and we needed to decide on the technology of our app server. We had tight deadlines so we needed to be quick so that we can reach MVP. 
+T - We had to decide between flask or django. Because we needed to move quick, I voted to Flask, A coworker of mine believed that Django would be better as It had better extensibility and more features for future extensibility.  
+A - So, there was a conflict between us. We deliberated and I came to understand that she had a point, and that we do want to think about long term maintainability. However, I wanted to get our product up and running quick so that we can polish it such that it is at a quility that our customers deserves. My thought process was that if we can get the entire system up and running. Futhermore, given the size of our customer base, extensibility was not priority as the quility of the product, and the first to market. 
+R- Therefore, I conviced her that to go with flask for now, and that we can switch to Django when it makes sense. The result of this is that we got to get to launch the product on time, and with the polish to boot.
+--Ematic Solutions UI Update--:
+LP Satisfied: Have Backbone; Disagree and Commit, Customer Obsession, Are Right, A Lot
+S - We wanted to overhaul the analytics site for our clients. Needed to modify the front end such that it is more user friendly for our clients. 
+T - Without direct contact to our clients, I needed to figure out what their needs are and then implement a feature to help them navigate our analytics site.
+A - Reasoning from first principles and trying to keep in mind what exactly would our client wants as a user of the platform. Within my area of responsibility, I grouped certain analytics together. Hid some metrics under a drop down. Only showing the bare essentials unless the customer explicitly wants to view these metrics. I also reduced the steps needed to reach or view certain metrics and made it as user friendly as possible without overwhelming the user with data and metrics.
+R - A choice was given to the clients achoice to pick between the old vs the new layout. The result were clients that were pretty happy about the new layout and the majority of our clients switched to the new layout.
+--UI Mistake--:
+LP Satisfied: Ownership, Earn Trust
+S - I implemented a UI element incorrectly that displayed a wrong metric that led to clients believing that their marketing campaigns weren't performing. 
+T - I realized what the mistake was, found the bug that was causing it in the app server.
+A - So I worked overtime and made sure that I resolved the issue. And worked with the customer success team to ensure that the customer was happy.
+R - Made sure I documented the entire thing so no else would made that mistake. And I made sure that the problem was known, and how exactly I made that that mistake so that no else in the future would make it. 
+--Game Jam--:
+LP Satisfied: Deliver results, Frugality
+S - Gamejam, 3 days to complete, the theme was Atari 2600 games, we decided to go with Asteroids.
+T - Since we had 3 days to complete it, we needed to work fast to get MVP
+A - During the planning stages, I made it a point to make sure we can reach MVP by 2nd or 3rd sprint where each sprint was 6 hours long (so 50-60% of the way there). So, we can account for the fact that we don't have a lot of time, and we can enssure that the product that will be shipped will meet the requirements and polish that the end user will expect. Some features include, good performance, good and challenging gameplay.
+R - We ended up having to scrap or pospone the implementation of some features. But the product was well recieved and we got 1st place, as the core game was polished and fun.
+--ML Dilema Overfitting Binary classification problem--:
+LP Satisfied: Dive Deep, Learn and be Curious
+S - There was an ML project.
+T - ML was getting a lot of false positive and negatives
+A - Needed a deep dive, really traced and reasearched the problems. figured out the problem, overfitting. fixed it
+R - The model now can tell or discern fakes and real with a 93% success rate
+--Emissions Tracker Data Pipeline--
+LP Satisfied: Learn and be Curious
+S - Creating an emissions tracker for a Hackathon
+T - There was an analystics component that required the aggregation and tallying of data.
+A - Implemented MapReduce to properly and asynchronously count the data to our database.
+R - We were able to asynchronously track multiple users' gas emissions.
+--Implementing CI to our Project--
+LP Satisfied: Insist on the Highest Standards, Are Right, A lot, Ownership
+S - In the university, working as a tech assistant. Trying to configure the CRUD app such that it would be easier to maintain
+T - Problem is that every now and then there were bugs. As there wasn't a stringent pipeline.
+A - I set up Travis CI to our git repo, and established a deployment pipeline. 
+R - This significantly decreased the amount of bugs in production, as there were code coverage and test cases properly vetting new commits.
+--Learning Flutter--
+LP Satisfied: Learn and be Curious, Deliver results
+S - Needed to implement a cross platform mobile app
+T - I've concluded that it would be best to use Flutter framework
+A - Learned the framework well and understood it well by analogizing it to JS and figuring out it's quirks
+R - Ended up implementing a multiplatform app that works on both iOS and Android within a day
+--Helping the new hire, Edwin--:
+LP Satisfied: Hire and Develop the Best
+S - We had a new coworker come in. However, he looked like he was struggling to understand our codebase. Which was understandable, large code bases are hard to navigate and intimidating. I've been there so I know what it feels like.
+T - While I was just an intern, I believed that it was still my responisbility to help out.
+A - So, I helped him out, by showing him where to look, and gave him an overview of which team owns what, and who to contact if he wants to modify a piece of code that we don't own. 
+R - Turns out he was a fast learner, all he needed was a push in the right direction so that he could flourish. Now, he's leading his own team in the company

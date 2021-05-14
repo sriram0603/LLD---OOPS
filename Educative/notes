@@ -1,0 +1,21 @@
+Tier ----
+The main upside of single-tier applications is they have no network latency since 
+every component is located on the same machine. This adds up to the performance 
+of the software.
+One big downside of single-tier app is that the business has no control over the 
+application. Once the software is shipped, no code or features changes can possibly 
+be done until the customer manually updates it by connecting to the 
+remote server or by downloading & installing a patch.
+An N-tier application is an application which has more than three components involved.
+componenets like:
+    Cache
+    Message queues for asynchronous behaviour
+    Load balancers
+    Search servers for searching through massive amounts of data
+    Components involved in processing massive amounts of data
+    Components running heterogeneous tech commonly known as web services etc.
+Why N-tiers ?
+beacuse of design principles Single responsibility principle and the 
+seperation of of concerns.
+Thin client and thick clients.
+HTTP protocol

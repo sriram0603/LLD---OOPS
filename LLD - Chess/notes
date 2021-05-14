@@ -1,0 +1,33 @@
+    5 step process:
+1) Gather requirements.
+2) Create use-case diagram
+3) Create class diagram
+4) Create skeleton code.
+5) Complete code.
+
+steps to follow for craeting use-case diagrams:
+1) Identification of actors.
+2) identificaton of use-cases.
+3) associations
+4) inclusive use-case and extensive use-case.
+5) identification of inheritance.
+
+requirements:
+1) there are 64 blocks.
+2) Played between 2 players (black and white)
+3) Basically we will have 16 -> 8 pawns, 1 king, 1 queen, 2 bishops, 2 knights and 2 rooks.
+4) player can start or join a game.
+5) first turn will be white and each player will paly alternatively.
+6) the system will validate accordingly as intl standards.
+7) player can save the game in between.
+8) game ends if black wins or white wins or stalemate.
+
+assumptions:
+1) player 1 will be white and every block has an address.
+2) system maintains all the logs of the moves.
+3) players cant roll back the moves.
+4) player can resign or cancel the game.
+6) system will give the winner.
+
+
+

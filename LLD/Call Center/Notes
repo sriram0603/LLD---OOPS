@@ -1,0 +1,10 @@
+--> Number of employees recieving customer calls.
+--> each call should be recorded.
+--> Level of employees: operator, director and supervisor.
+--> If operator does not lift the call will go to Supervisor and if supervisor does not then
+    goes to director.
+--> If no one answers the calls it gets queued.
+--> Assume that the inputs are valid.
+--> VIP calls should be put first in the queue.
+
+Code:

@@ -1,0 +1,201 @@
+100,000+ instances in AWS. 150M of streaming per day. 190 countries.
+86M members.
+Everything on AWS.
+Mostly works on ECS in AWS. moved to containers.
+
+Auxiliary services, the services used to look after other services like authentication, 
+payment etc.
+So you are gonna come up with a way to aggregate all the users data on the website 
+and use it to process for recommendation engine.
+So diving the whole system into two sub systems:
+1) Core user flow - like streaming videos, videos and their description, metadata etc.
+2) Recommendation System.
+latency ? --> the recommendation system happens asynchronously in the background and 
+do not care about latencies and the core user flow depends on the latency.
+global ?
+highly available ?
+How many users ? spread out globally ?
+as netflix is used in all the clients do i need to focus on a specific client 
+like mobile phones or do I need to focus on distributed system ? 
+data ? what data to store ? -- 
+video content, 
+user metadata -- how much user watched and rating, 
+static content like the thumbnails or the cast of movie like that.
+Logs -- as you said we need data for recommenation engine, so we can collect click data and 
+time spend on that video, more granular data.
+
+Storage Solution ?
+
+So we have 10k videos as this is not a youtube and we will be having limited movies. 
+--> we also have diferent resolutions based on the premuim or basic.
+so we need to store all those types of resolution videos.
+--> each video can be average of 1 Hr long.
+--> each vide of 10 GB standard and 20 Gb for HD.
+--> As there are 10k videos and which contributes to 10k*30gb --> 300TB
+which is probably low compared to youtube or Google drive.
+so we can use blob store like S3 and not to do any super fancy thing.
+--> As the static content is about videos and videos gives 300TB we can bound our static 
+content to less than 300TB. we store them in a Key value store DB or in a PostGres.
+--> as the users are around 200Mil we have to do something for the data stored in
+user metadata.
+--> so we need to store did user watch this video and if so how long did he watch and 
+if the user watches 2 shows per week and as the netflix is for around 10 years its
+going to be per year 100 shows and 1000 shows in 10 years.
+--> so to store meta data on each video it takes 100 Bytes as we are only storing key value,
+boolean etc, so 1000 videos per user. ==> 100bytes * 1000 = 100 KB and 200Mil users 
+==> 200 Mil * 100 KB = That gives 20TB.
+
+
+network bandwith and latency:
+so considering when there is a peak time like a most popular video is there,
+then 5% of global population are wathcing the same video.
+so 10Mil is the peak traffic.
+just to be conservative, if they are watching in HD that means each user needs 20 GB per hour.
+how much will be for second ? 5Mb per user, so for 10 mil how much per second ?
+50 TB per second --> this seems a lot.
+we want this to be spread out to a different locations. we can use a CDN. 
+So if we have 1000's of points of presence, we can reduce down to Gb per second.
+and if each of the point of presence have a cluster then we can bring down to mbps.
+we can have a cache populator between CDN and S3.
+
+watch from 25 minutes of this videoin algoexpert.
+
+-----Tech Dummies Youtube or Netflix-------
+1) Open connect 2) Backend 3) Client.
+Open connect is netflix's own CDN --> where videos are put in.
+anything apart from videos is put into AWS.
+clients:
+the clients can be TV, laptop, mobiles etc.
+These web apps are written in React JS because of its modularity, start up speed, 
+run time performance.
+Then we use elastic load balancer where we balance load with the zone first and then
+balance with the instances. (diagram - ELB)
+This scheme is called two-tier balancing scheme.
+the first tier consists of basic DNS based round-robin balancer.
+the second tier on LB is routing it to different instances.
+
+how netflix onboards a video ?
+netflix does transcoding like finding errors and making it available in different 
+resolutions.
+we are doing transcoding because based on the client, the video should be available,
+and the bandwidth and the storage.
+file optimised for diff network speed.
+the netflix basically takes the original, breaks it processes them and saves different 
+types of resolutions and merge upload them in S3 buckets. 
+so for each video we will have around 1200 copies of that video.
+so these movies can then we uploaded to diff CDN (open connect) to all over the world.
+So billing, customer support all the other user metadata are handles by the AWS 
+instances which are in cloud.
+So when user plays a video, the client is intelligent that it dynamically selects the
+OC server which has less bandwidth and plays.
+In AWS, the user data is run on a cluster and machine learning models are used to
+develop recommendation system.
+
+ZUUL:
+the request is sent to a netty proxy server, where it filter the user authentication
+and then passes the request to endpoint filter where the request is passed to 
+backend, if request is for a static then we can send immediately if not then it reaches,
+the backend. the repsonse is then send to outbound.
+
+Advtages of gateway service ?
+1) shard traffic 2) Load testing 3) test new service 4) filter BAD request.
+
+HYSTRIX microservice monitoring service.
+it is a end point where it sends and receives req and res.
+we can use it for error response cascading.
+it takes care of each and every microservies. 
+Advantages:
+1) when the timing of the response from the microservice is taking more time then the 
+    request is cancelled and a static reponse is sent.
+2) rejects req when the thread pool is full. 
+3) if more errors takes down service.
+4) shows mertrics.
+
+how to choose which endpionts are critical ?
+making sure the basic fucntionality of the web page should work.
+
+Adv of caching for all of its API end points.
+the data is written in all the instances of all clusters and read from any of the nearest.
+high thorughput.
+low latency. cost optimised.
+these are in-memory which uses SSD.
+
+Databases.
+MySQL and Cassandra.
+all big data to Cassandra.
+master-master setup for MySQL
+
+
+--------CodeKarle------
+For any video streaming service
+Functional Requirements:
+1) Users Home and search
+2) play videos
+3) upload videos.
+4) what types of clients ? -- support all clients.
+    formats to each client.
+    resolutions
+    dimensions
+    Bandwidth
+
+Non functional:
+1) Highly available
+2) No Buffering - minimize the buffering (Low latency and high available).
+3) user Session Time.
+4) recommendation engine.
+
+3 types of consumers;
+1) CLients
+2) Users
+3) production House.
+
+when the client requests for a video based on its format, chunks of data is streamed and
+the payed on the user UI but if you requested for a HD and the bandwidth does not support
+the HD and the video's next chunk of data is not received , it will cause buffering so 
+to avoid the client dynamically requests data based on the bandwidth. this funcitonality is 
+called Adaptive Filteration streaming and if there is a lot of chunks comming it will go for 
+next higher quality content.
+
+Flow diagram.
+
+--------- 1/18/2021 ---------
+“Personalizing Netflix with Streaming Datasets” and discussed the trials and 
+tribulations of a recent migration of a Netflix data-processing job from the traditional 
+approach of batch-style ETL to stream processing using Apache Flink.
+
+Netflix’s core mission is to entertain customers by allowing them to watch 
+personalized video content anywhere at anytime. In the course of providing this 
+personalized experience, Netflix processes 450 billion unique events daily from 
+100+ million active members in 190 different countries who view 
+125 million hours of content per day. 
+
+Netflix system uses the microservice architectural style and services communicate 
+via remote procedure call (RPC) and messaging. The production system has a large 
+Apache Kafka cluster with 700+ topics deployed that manages messaging and also feeds 
+the data-processing pipeline.
+
+At a high level, microservice application instances emit user and system-driven data 
+events that are collected within the Netflix Keystone data pipeline — a petabyte-scale 
+real-time event streaming-processing system for business and product analytics. 
+Traditional batch data processing is conducted by storing this data within a 
+Hadoop Distributed File System (HDFS) running on the Amazon S3 object storage 
+service and processing with Apache Spark, Pig, Hive, or Hadoop. Batch-processed 
+data is stored within tables or indexers like Elasticsearch for consumption by 
+the research team, downstream systems, or dashboard applications. 
+Stream processing is also conducted by using Apache Kafka to stream data 
+into Apache Flink or Spark Streaming.
+
+Another question to ask is whether the implementation requires the lambda 
+architecture. This architecture is not to be confused with AWS Lambda or serverless 
+technology in general — in the data-processing domain, the lambda architecture 
+is designed to handle massive quantities of data by taking advantage of both 
+batch-processing and stream-processing methods. This approach to architecture 
+attempts to balance latency, throughput, and fault-tolerance by creating a batch 
+layer that provides a comprehensive and accurate “correct” view of batch data, 
+while simultaneously implementing a speed layer for real-time stream processing 
+to provide potentially incomplete, but timely, views of online data.
+
+How to put a stream processing ?
+1) micro - batch or event based streaming.
+2) what featureswill be most important ?
+3) do you want lambda ?

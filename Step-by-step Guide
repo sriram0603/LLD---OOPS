@@ -1,0 +1,20 @@
+4 Big Things:
+
+1) User/Customers
+    whio will use ?
+    how the system will use ? 
+2) Scale(read and write)
+    how much read queries ?
+    traffic spikes ?
+    how big ?
+3) performance
+    what is write-to-read data delay ?
+    what is the expected latency for read queries ?
+4) cost
+    should minimize cost of development ?
+    should minimize cost of maintenance ?
+
+Top priority in non-functional requirements should be:
+1) Scalability 
+2) Availability
+3) perfromance.

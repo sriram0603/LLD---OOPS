@@ -1,0 +1,112 @@
+------- Specialised storage paradigms ---------
+
+key-value store --is a flexible NoSQL Db often used for caching and dynamic config.
+    eg: DynamoDB, Redis, Zookeeper etc.
+Database Indexing : for faster reads but comprimises on writes as the data to be written to 
+    the relevant index.
+Blob store is more like a straight forward DB. Blob - binary large object.
+
+---Latency and Throughput----
+
+    these define the performance of the system.
+    Latency is nothing but time taken to traverse data from one point in a system to another
+point in a system.
+there are diff types of latencies involved in a system.
+1 MB reading sequenctially from memory is 250 micro seconds from SSD- 10**6 th second.
+sending 1 Mb over 1 GBPS network will take 10,000 micro seconds.
+A packet sent from cali-->netherlands-->cali take 150000 microseconds. because of distance
+b/w the points.
+
+    Throughtput is the amount of work a system or a machine can perform in a given amount
+of time. thats why we used 1GBPS network where this network can support 1 GB per second.
+so when we have a lot of clients, all clients are making req to the server, so throughput
+means the amount of requests the server accepts in a second. we can think the server as
+a bottle neck where the server can allow certain amount of bits to handle.
+so to handle throughput better way to design is to increase the servers so many req can
+be handled.
+
+---- Caching ----
+
+caching is used to decrease or improve latency of a system. 
+we can cache at client level, server level and database level.
+we can have key-value of the data stored in the client level so the req wont go to the 
+server.
+static content can be cached onto the client side.
+
+Redis is an in-memory key-value database.
+
+when we edit a post, will that post be edited in the cache and DB ?
+we have two types of.
+in write through cache, in both DB and server cache, the post is edited.
+so if we edit the post that is cached, in both cache and also in the DB, the post is edited
+but the downside is that it is still hitting the DB, which makes no use of cache.
+so in write through you will have to do two things (two edits) and you should also go
+to the DB. DB and the cache will be in sync.
+so we can use write back cache. where only the server cache gets updated and the DB is not
+and is out of sync. later the cache updates the data asychrounously like every 5 sec,
+every 5 min etc.  downside is that when the server is down, the data that should be 
+written to the DB will never get updated and we lose data. but it can be mitigated.
+
+cache invalidation can eb solved using:
+1) Write through cache 2) write around cache 3) write-back cache.
+
+Concept of staleness: in youtube comments when the user updates a comment and the cache in 
+the server only gets updated and not in DB, then the other user who want to reply to that
+comment will have the older version and is unacceptable.
+so the cache should be updated properly.
+we can pull the cache out of the servers and put all the caching in a single server,
+then we can have all source of truth in a single cache. 
+do we need to care the accuracy of that data ? based on this the req is set.
+    if the data is static or immutable then static works best.
+    we should have a single thing for reading or writing data, because multiple things 
+    can cause data consistency issues.
+
+Eviction policies:
+    we want to get rid of the data in the caches. how ?
+    LRU policy and LFU policy.
+
+CDN's.
+
+IP address load balancer can be used to maximise cache hits.
+
+------- Proxies --------
+reverse proxies and forward proxies. proxy means forward proxy.
+proxy acts as a server between the clients and the server. forward acts s client's team.
+reverse proxy is on the server's team.
+eg: we can cache HTML, logging , using reverse proxy as a load balancer,filter bad reqs.
+can use Nginx as a reverse proxy.
+
+---- Redundancy and replication ----
+
+
+---- 1/6/2021 ----
+Hashing:
+in a LB there can be a problem in server-selection strategy. if the req coming from clients 
+are pretty computationally expensive then these requests are  cached in the server.
+The hashing function in the Load balancer should have uniformity where the clients are
+evenly distruibuted to all the servers.
+We can use MD5 hashing or SHA12.
+so suing hashing we can maximise our cache hits.
+When we want to scale our servers ? how we deal with hash fucntion ?
+so if we hash with different nukber of servers then all the clients which are previously
+connected to the servers are now sent to another servers. which again starts the problem of 
+cache misses.
+so if we want to remove a server or add a server we can use. Consistent hashing or
+rendezvous hashing comes into play.
+so we takes all the servers which are placed in a vertical line are now placed in a 
+circular form where all the servers all placed on the circular ring. there are numbers
+present on this circular line, based on hashed value of the server names we can place 
+them on this circle.
+so when the clients's IP or HTTP or client's name is hashed and the hashed value is 
+generated and the client is placed on the circular number line where the servers 
+are present. these client servers are also placed baseed on their hash value.
+so the load balancer will now see a server which is clock wise or an anti-clock wise
+based on this the server is selected and this server handles the request from that client.
+This is called consistent hashing. so when a server is removed or added, not all servers
+are missing cache hts only one or two are missing cache hits.
+we can place a particualr A at different locations in the circle so that the client req can 
+be often sent to it.
+rendezvous hashing does hashing the user names and based on the some logic it is 
+going to rank the servers where the req will be handled.
+so the highest ranking server will handle the username sent. if that server is unavailable
+the the req is sent to next highest ranking server and the req is handled.

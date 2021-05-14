@@ -1,0 +1,33 @@
+requirements:
+
+
+1) show current movies and the shows.
+2) change location
+3) search different types of movies
+4) each movie will be listed for different shows.
+5) registered user should be able to buy 10 number of tickets.
+
+
+1) theatre can edit/add a show.
+
+we are building a MVP - minimum viable product where we can extend based on 
+future requirements.
+
+so we make some assumptions.
+1) Single screen
+2) each screen will have limited seats
+3) registered can book and guest can search
+4) Registered user will have booking history - so he can cancel the tickets.
+5) Bi-linguial - English and Hindi
+6) categories - Horror, comedy, action, Romance
+Not considering payment for now.
+
+we can consider the extension use-cases once the MVP is ready.
+Create abstract class of User because the objects will be created from the 
+registered user and the Guest user only. 
+ 
+multi-screens ? seat-selection ? payments ? multi-lingual languages ? 
+support location based search of theatres ?
+How shall we handle concurrency ?
+
+classes:

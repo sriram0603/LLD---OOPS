@@ -1,0 +1,115 @@
+Parking Lot
+
+We can have multiple parking floors.
+Multiple entry and exits.
+Customer can collect ticket at entrance and can pay fee at the exit.
+Can pay in cash or credit.
+If parking is full the system should mention in board at the entrance.
+We will have different parking spots like Handicapped, Normal
+We will also have parking for different vehicles like 2 wheeler, 4 wheeler.
+For each parking floor there should be a display for available free spots for vehicles.
+Parking rate per hour.
+
+Use Case Diagrams:
+
+customer can:
+    take ticket
+    scan ticket
+    pay ticket (includes scan ticket and credit card payment)
+
+system:
+    add vehicle to parking
+    remove vehicle
+    show number of available spots.
+
+parking attendant:
+    record cash payment.
+
+admin:
+    can add parking floors.
+    can add parking spots.
+    adding entry exit boards.
+
+Vehicle Types --> <<enum>>
+Parking spot Type --> <<enum>>
+Parking Ticket status --> <<enum>>
+
+-- Parking Lot
+-- parking floor 
+-- parking spots
+-- Parking rate.
+-- Parking - Display Board
+-- Admin and attendant.
+-- Entrance and Exit panels
+-- Parking Ticket
+-- Payment
+
+Parking spot and vehicle has a uni-association where spot can call a vehicle but not vice 
+versa.
+same for vehicle and ticket, where vehicle can calla ticket.` 
+Code:
+
+class ParkingLot:    
+    def __init__(self,floors,name):
+        self.name = name
+        pass
+    def addFloors(self):
+        pass
+    def isFull(self) -> bool:
+        pass
+
+class Entrypanel:
+    def __init__(self):
+        self.id 
+    def printTicket(self):
+        pass
+
+class ExitPanel:
+    def scanTicket(self,ticket):
+        pass
+    def processPayment(self):
+        pass
+
+class ParkingFloor:
+    def __init__(self,spots,number):
+        self.number = number
+    def updateDisplayBoard(self):
+        pass
+    def showFreeslots(self):
+        pass
+    def addParkingSpot(self):
+        pass
+    def assignVehicletoSpot(self,vehicle):
+        pass
+
+class ParkingSpot:
+    def __init__(self):
+        self.isAvailable = False
+    def parkingSpotType(self):
+        pass
+    def getIsFree(self):
+        pass
+
+class vehicle:
+    def __init__(self):
+        self.type
+        self.number
+    def assignTicket(self):
+        pass
+
+class ParkingTicket:
+    self.ticket_number
+    self.issuedAt
+    self.datetime
+    self.status --> enum
+
+class Payment:
+    self.amount
+    def initiateTransaction(self):
+        pass
+
+class creditCardTransaction:
+    pass
+
+class cashTransaction:
+    pass
